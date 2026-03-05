@@ -209,6 +209,20 @@ o.smartcase = true
 o.termguicolors = true
 o.clipboard = 'unnamedplus'
 
+vim.filetype.add({
+  pattern = {
+    ['.*'] = function(p, b)
+      local s = vim.fn.getfsize(p)
+      if s > 1048576 then -- 1 MB
+        return 'bigfile'
+      end
+      if s / vim.api.nvim_buf_line_count(b) > 1000 then -- minified files
+        return 'bigfile'
+      end
+    end
+  }
+})
+
 keymap('v', '<C-w>', ':m \'<-2<CR>gv=gv', {})
 keymap('v', '<C-s>', ':m \'>+1<CR>gv=gv', {})
 keymap('n', '<Leader>q', ':q<CR>', {})
@@ -315,5 +329,12 @@ autocmd('CursorHold', {
         end
       })
     end
+  end
+})
+autocmd('FileType', {
+  pattern = 'bigfile',
+  callback = function(ev)
+    vim.treesitter.stop(ev.buf)
+    vim.bo[ev.buf].syntax = 'off'
   end
 })
