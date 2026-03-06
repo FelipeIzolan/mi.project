@@ -2,10 +2,12 @@
 import '../assets/mi.css';
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import { title as RSSTitle } from "../pages/rss.xml.ts";
 import katexURL from "/node_modules/katex/dist/katex.css?url";
 const url = new URL(Astro.url.pathname, Astro.site);
 const {
   css = {},
+  rss,
   date,
   title,
   author,
@@ -20,6 +22,7 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={url} />
     {css.katex && <link rel="stylesheet" href={katexURL} />}
+    {rss && <link rel="alternate" type="application/rss+xml" title={RSSTitle} href={new URL('rss.xml', Astro.site)} />}
 
     <meta charset="utf-8" />
     <meta name="description" content={description} />

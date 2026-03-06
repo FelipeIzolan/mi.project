@@ -22,6 +22,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 <!-- <Paper {...post.data} date={toNBR(post.data.date)}> -->
-<Paper {...post.data} date={post.data.date}>
+<Paper rss={true} {...post.data }>
   <Content />
 </Paper>

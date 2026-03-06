@@ -10,7 +10,7 @@ import remarkGemoji from 'remark-gemoji';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  site: 'https://your-site.com/',
+  site: 'https://your-site.com/', // <- must edit!
   markdown: {
     shikiConfig: {
       theme: 'github-dark',

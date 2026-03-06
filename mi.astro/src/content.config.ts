@@ -1,6 +1,10 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
+// documentation:
+// https://docs.astro.build/en/guides/content-collections/
+
+// blog collection
 const blog = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
@@ -10,7 +14,7 @@ const blog = defineCollection({
     css: z.object({
       katex: z.boolean().optional()
     }).optional(),
-    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     title: z.string(),
     description: z.string(),
     author: z.string().optional()

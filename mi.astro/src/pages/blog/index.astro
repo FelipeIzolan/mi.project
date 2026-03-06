@@ -10,6 +10,7 @@ const inodes = posts.sort((a, b) => {
 }).map(post => ({ type: 'file', text: post.data.title, slug: post.id }));
 ---
 <Directory
+  rss={true}
   title={'mi.astro - Blog'}
   description={'Blog posts'}
   {inodes}
